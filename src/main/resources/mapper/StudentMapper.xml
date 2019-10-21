@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--nameSpace 与dao层建立连接-->
+<mapper namespace="cn.zfq.kaola.dao.StudentDao">
+    <!-- 查询数据:返回student对象 -->
+    <select id="selectByName" parameterType="String" resultType="cn.zfq.kaola.entity.Student">
+        select * from candidate where c_telephone=#{c_telephone}
+    </select>
+    <!-- 插入数据:返回记录的id值 -->
+    <insert id="insertStudent" parameterType="cn.zfq.kaola.entity.Student">
+        insert into candidate(c_telephone,c_pwd) values(#{c_telephone},#{c_pwd})
+    </insert>
+    <update id="signInformation" parameterType="String">
+        update candidate set studentNumber=#{studentNumber},idCard=#{idCard},telNumber=#{telNumber},subjct=#{subject}
+        where userName=#{userName}
+    </update>
+    <select id="searchInformation" parameterType="String" resultType="cn.zfq.kaola.entity.Student">
+        select * from candidate where userName=#{userName} and idCard=#{idCard}
+    </select>
+</mapper>
